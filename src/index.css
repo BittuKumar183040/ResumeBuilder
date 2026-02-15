@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&display=swap');
+@import "tailwindcss";
+
+* {
+  font-family: "Ibarra Real Nova", serif;
+}
+
+@media print {
+
+  body * {
+     visibility: hidden;
+  }
+  
+  @page {
+    margin: 0;    
+    font-size-adjust: unset;
+  }
+
+  .resume-page,
+  .resume-page * {
+    visibility: visible;
+  }
+  div.resume-sidebar{
+    display: none;
+  }
+  
+  div.resume-divider {
+    zoom: 1 !important;
+    overflow: visible;
+    width: 100% !important;
+  }
+  
+  .resume-page {
+    position: fixed;
+    left: 0;
+    top: 0;
+    border: none;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+}
