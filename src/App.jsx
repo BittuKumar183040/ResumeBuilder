@@ -59,25 +59,30 @@ function App() {
     },
   })
 
-  const [experiences, setExperiences] = useState([
-    {
-      designation: "Software Developer",
-      company: "BosonQ Psi Technology Pvt. Ltd.",
-      duration: { start: "June 2023", end: "Present" },
-      mode: "Remote + Hybrid",
-      location: "Bangalore",
-      description: [
-        <li key={1}>Developed a <span className="font-semibold">full-stack microservices-based simulation platform </span>using React, Spring Boot, and FastAPI, supporting secure storage (<span className="font-semibold">S3, PVC</span>), versioning, multi-tenancy, and API access control.</li>,
-        <li key={2}>Designed and built a <span className="font-semibold">2D/3D visualization engine </span>using WebGL and Three.js.</li>,
-        <li key={3}>Implemented <span className="font-semibold">JWT-based authentication</span> with bcrypt, enabling role-based access control.</li>,
-        <li key={4}>Built <span className="font-semibold">RESTful APIs</span> across microservices using FastAPI and Spring Boot with OpenAPI.</li>,
-        <li key={5}>Crafted a <span className="font-semibold">responsive UI</span> using React, Redux, TypeScript, and Tailwind CSS.</li>,
-        <li key={6}>Maintained high code quality through <span className="font-semibold">modular architecture</span>, unit and integration testing.</li>,
-        <li key={7}>Designed PostgreSQL schemas with <span className="font-semibold">ORM-based migrations </span>and efficient data-access patterns.</li>,
-        <li key={8}>Containerized and deployed services using <span className="font-semibold">Podman and Docker </span>on AWS with exposure to Kubernetes and GitOps.</li>
-    ]}
-  ])
-
+  const [experiences, setExperiences] = useState({
+    label: "EXPERIENCE",
+    value: [{
+      designation: { lable: "Designation", value: "Software Developer", className: " text-sm font-medium tracking-wide" },
+      company: { label: "Company", className: "text-sm font-medium", value: "BosonQ Psi Technology Pvt. Ltd."},
+      duration: { label: "Duration", className: "italic text-sm font-medium", start: { label: "Start", value: "June 2023" }, end: { label: "End", value: "Present" } },
+      mode: { label: "Mode", value: "Remote + Hybrid", className: " text-sm italic font-medium" },
+      location: { lable: "Location", value: "Bangalore", className: " text-sm font-medium" },
+      description: {
+        lable: "Description",
+        className: "list-disc space-y-1 text-sm",
+        value: [
+          <li key={1}>Developed a <span className="font-semibold ">full-stack microservices-based simulation platform </span>using React, Spring Boot, and FastAPI, supporting secure storage (<span className="font-semibold">S3, PVC</span>), versioning, multi-tenancy, and API access control.</li>,
+          <li key={2}>Designed and built a <span className="font-semibold">2D/3D visualization engine </span>using WebGL and Three.js.</li>,
+          <li key={3}>Implemented <span className="font-semibold">JWT-based authentication</span> with bcrypt, enabling role-based access control.</li>,
+          <li key={4}>Built <span className="font-semibold">RESTful APIs</span> across microservices using FastAPI and Spring Boot with OpenAPI.</li>,
+          <li key={5}>Crafted a <span className="font-semibold">responsive UI</span> using React, Redux, TypeScript, and Tailwind CSS.</li>,
+          <li key={6}>Maintained high code quality through <span className="font-semibold">modular architecture</span>, unit and integration testing.</li>,
+          <li key={7}>Designed PostgreSQL schemas with <span className="font-semibold">ORM-based migrations </span>and efficient data-access patterns.</li>,
+          <li key={8}>Containerized and deployed services using <span className="font-semibold">Podman and Docker </span>on AWS with exposure to Kubernetes and GitOps.</li>
+        ]}
+    }]
+  }
+)
 
   useEffect(() => {
     if (modifyEnabled && resumeContent.current) {
@@ -98,7 +103,7 @@ function App() {
           </div>
           <div className={` ${sidePanelCollapse && "w-0 opacity-0"} transition-all`}>
             <Header header={header} setHeader={setHeader} />
-            <Experience experiences={experiences} setExperiences={setExperiences} />
+            {/* <Experience experiences={experiences} setExperiences={setExperiences} /> */}
           </div>
         </div>
         <div style={{ zoom: zoom }} className={`resume-divider flex items-start xl:justify-center w-full relative overflow-auto shadow-inner transition-all`}>
