@@ -42,20 +42,21 @@ const Builder = forwardRef(({ header, experiences }, ref) => {
       </section>
 
       <section>
-        <Header title={"EXPERIENCE"} />
-        {experiences?.map((experience) => {
+        <Header title={experiences.label} />
+        {experiences?.value?.map((experience) => {
+          console.log(experience)
           return (
-            <div key={experience.company}>
-              <div className='flex justify-between text-sm font-medium'>
-                <p className=' tracking-wide'>{experience.designation}</p>
-                <p className="italic">{experience.duration.start} - {experience.duration.end}</p>
+            <div key={experience.designation.label}>
+              <div className='flex justify-between'>
+                <p className={experience.designation.className}>{experience.designation.value}</p>
+                <p className={experience.duration.className}>{experience.duration.start.value} - {experience.duration.end.value}</p>
               </div>
-              <div className='flex justify-between text-xs mb-1'>
-                <p className="font-md">{experience.company}</p>
-                <p className="italic">{experience.mode}, {experience.location}</p>
+              <div className='flex justify-between mb-1'>
+                <p className={experience.company.className}>{experience.company.value}</p>
+                <p className={experience.mode.className}>{experience.mode.value}, {experience.location.value}</p>
               </div>
-              <ol className='list-disc pl-5 space-y-1 text-sm ml-4'>
-                {experience.description}
+              <ol className={`pl-3 ml-4 ${experience.description.className}`}>
+                {experience.description.value}
               </ol>
             </div>
           )
@@ -79,7 +80,7 @@ const Builder = forwardRef(({ header, experiences }, ref) => {
             </div>
             <div className="text-xs italic">March 2025</div>
           </div>
-          <ol className='list-disc pl-5 space-y-1 ml-4 text-sm'>
+          <ol className='pl-3 ml-4 list-disc space-y-1 text-sm'>
             <li>
               Designed and developed a <span className="font-semibold">browser-based 2D/3D model visualization tool </span>
               using <span className="font-semibold">React, WebGL, and Three.js</span> to render complex models
@@ -118,7 +119,7 @@ const Builder = forwardRef(({ header, experiences }, ref) => {
             </div>
             <div className="text-xs italic">Nov 2025</div>
           </div>
-          <ol className='list-disc pl-5 space-y-1 ml-4 text-sm'>
+          <ol className='pl-3 ml-4 list-disc space-y-1 text-sm'>
             <li>
               Built a <span className="font-semibold">pixel-perfect Windows 11 - style web application </span>
               with highly interactive UI and native-like behavior.
