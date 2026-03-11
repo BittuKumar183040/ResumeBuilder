@@ -61,21 +61,26 @@ function App() {
 
   const [experiences, setExperiences] = useState([
     {
-      designation: "Software Developer",
-      company: "BosonQ Psi Technology Pvt. Ltd.",
-      duration: { start: "June 2023", end: "Present" },
-      mode: "Remote + Hybrid",
-      location: "Bangalore",
-      description: [
-        <li key={1}>Developed a <span className="font-semibold">full-stack microservices-based simulation platform </span>using React, Spring Boot, and FastAPI, supporting secure storage (<span className="font-semibold">S3, PVC</span>), versioning, multi-tenancy, and API access control.</li>,
-        <li key={2}>Designed and built a <span className="font-semibold">2D/3D visualization engine </span>using WebGL and Three.js.</li>,
-        <li key={3}>Implemented <span className="font-semibold">JWT-based authentication</span> with bcrypt, enabling role-based access control.</li>,
-        <li key={4}>Built <span className="font-semibold">RESTful APIs</span> across microservices using FastAPI and Spring Boot with OpenAPI.</li>,
-        <li key={5}>Crafted a <span className="font-semibold">responsive UI</span> using React, Redux, TypeScript, and Tailwind CSS.</li>,
-        <li key={6}>Maintained high code quality through <span className="font-semibold">modular architecture</span>, unit and integration testing.</li>,
-        <li key={7}>Designed PostgreSQL schemas with <span className="font-semibold">ORM-based migrations </span>and efficient data-access patterns.</li>,
-        <li key={8}>Containerized and deployed services using <span className="font-semibold">Podman and Docker </span>on AWS with exposure to Kubernetes and GitOps.</li>
-    ]}
+      designation: { label: "Designation", className: "tracking-wide text-sm font-semibold", value: "Software Developer" },
+      company: { label: "Company", className: "text-xs font-medium", value: "BosonQ Psi Technology Pvt. Ltd." },
+      duration: { label: "Duration", className: "italic text-sm", value: { start: "June 2023", end: "Present" } },
+      mode: { label: "Mode", className: "italic text-xs", value: "Remote + Hybrid" },
+      location: { label: "Location", className: "italic text-xs", value: "Bangalore" },
+      description: {
+        label: "Description",
+        className: "list-disc pl-5 space-y-1 text-sm ml-4",
+        value: [
+          <li key={1}>Developed a <span className="font-semibold">full-stack microservices-based simulation platform</span> using React, Spring Boot, and FastAPI with secure storage (<span className="font-semibold">S3, PVC</span>), versioning, multi-tenancy, and API access control.</li>,
+          <li key={2}>Designed and built a <span className="font-semibold">2D/3D visualization engine</span> using WebGL and Three.js.</li>,
+          <li key={3}>Implemented <span className="font-semibold">JWT-based authentication</span> with bcrypt enabling role-based access control.</li>,
+          <li key={4}>Built <span className="font-semibold">RESTful APIs</span> across microservices using FastAPI and Spring Boot with OpenAPI.</li>,
+          <li key={5}>Crafted a <span className="font-semibold">responsive UI</span> using React, Redux, TypeScript, and Tailwind CSS.</li>,
+          <li key={6}>Maintained high code quality through <span className="font-semibold">modular architecture</span>, unit and integration testing.</li>,
+          <li key={7}>Designed PostgreSQL schemas with <span className="font-semibold">ORM-based migrations</span> and efficient data-access patterns.</li>,
+          <li key={8}>Containerized and deployed services using <span className="font-semibold">Podman and Docker</span> on AWS with exposure to Kubernetes and GitOps.</li>
+        ]
+      }
+    }
   ])
 
 
@@ -91,10 +96,10 @@ function App() {
     <div className=' flex flex-col h-dvh w-full'>
       <div className=' relative flex-1 flex justify-between overflow-auto'>
         <div className={` resume-sidebar relative shrink-0 space-y-2 shadow overflow-y-auto overflow-x-hidden transition-all 
-          ${sidePanelCollapse ? "w-8 p-0" : " xl:w-110 md:w-82 w-60 p-4" }`}>
+          ${sidePanelCollapse ? "w-8 p-0" : " xl:w-110 md:w-82 w-60 p-4"}`}>
           <div className='flex items-center justify-between border-b-2 border-gray-300'>
-            {!sidePanelCollapse && <p className=' font-medium truncate'>Betoo Resume Builder</p> }
-            <button className=' p-2 cursor-pointer' onClick={()=>setSidePanelCollapse(!sidePanelCollapse)}> <MenuOutlined /></button>
+            {!sidePanelCollapse && <p className=' font-medium truncate'>Betoo Resume Builder</p>}
+            <button className=' p-2 cursor-pointer' onClick={() => setSidePanelCollapse(!sidePanelCollapse)}> <MenuOutlined /></button>
           </div>
           <div className={` ${sidePanelCollapse && "w-0 opacity-0"} transition-all`}>
             <Header header={header} setHeader={setHeader} />

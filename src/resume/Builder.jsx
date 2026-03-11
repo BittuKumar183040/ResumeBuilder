@@ -31,8 +31,8 @@ const Builder = forwardRef(({ header, experiences }, ref) => {
                   >
                     {item.value}
                   </a>
-                  :
-                  <p className="font-medium">{item.value}</p>
+                    :
+                    <p className="font-medium">{item.value}</p>
                 }
               </div>
             ))
@@ -43,19 +43,27 @@ const Builder = forwardRef(({ header, experiences }, ref) => {
 
       <section>
         <Header title={"EXPERIENCE"} />
-        {experiences?.map((experience) => {
+
+        {experiences?.map((experience, index) => {
           return (
-            <div key={experience.company}>
-              <div className='flex justify-between text-sm font-medium'>
-                <p className=' tracking-wide'>{experience.designation}</p>
-                <p className="italic">{experience.duration.start} - {experience.duration.end}</p>
+            <div key={index}>
+              <div className="flex justify-between">
+                <p className={`tracking-wide text-sm font-medium ${experience.designation.className}`}>
+                  {experience.designation.value}
+                </p>
+                <p className={`italic text-sm ${experience.duration.className}`}>
+                  {experience.duration.value.start} - {experience.duration.value.end}
+                </p>
               </div>
-              <div className='flex justify-between text-xs mb-1'>
-                <p className="font-md">{experience.company}</p>
-                <p className="italic">{experience.mode}, {experience.location}</p>
+
+              <div className="flex justify-between">
+                <p className={`text-xs ${experience.company.className}`} > {experience.company.value} </p>
+                <p className={`italic text-xs ${experience.mode.className} ${experience.location.className}`}>
+                  {experience.mode.value}{experience.location.value ? `, ${experience.location.value}` : ""}
+                </p>
               </div>
-              <ol className='list-disc pl-5 space-y-1 text-sm ml-4'>
-                {experience.description}
+              <ol className={`list-disc pl-5 space-y-1 text-sm ml-4 ${experience.description.className}`}>
+                {experience.description.value}
               </ol>
             </div>
           )
