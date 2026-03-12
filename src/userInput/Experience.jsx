@@ -131,9 +131,14 @@ const Experience = ({ experiences, setExperiences }) => {
   }
 
   const addExperience = () => {
-    const template = JSON.parse(JSON.stringify(experiences[0]))
-    template.description.value = [<li key={Date.now()}></li>]
-
+    const template = {
+      designation: { label: "Designation", className: "tracking-wide text-sm font-semibold", value: "" },
+      company: { label: "Company", className: "text-xs font-medium", value: "" },
+      duration: { label: "Duration", className: "italic text-sm", value: { start: "", end: "" } },
+      mode: { label: "Mode", className: "italic text-xs", value: "" },
+      location: { label: "Location", className: "italic text-xs", value: "" },
+      description: { label: "Description", className: "list-disc pl-5 space-y-1 text-sm ml-4", value: [<li key={Date.now()}></li>] }
+    }
     setExperiences(prev => [...prev, template])
   }
 
@@ -144,7 +149,7 @@ const Experience = ({ experiences, setExperiences }) => {
   return (
     <>
       <div className="flex items-center justify-between mt-4">
-        <h1 className="text-lg font-semibold">Experiences</h1>
+        <h1 className="text-md font-semibold">Experiences</h1>
 
         <button
           onClick={addExperience}
@@ -156,7 +161,7 @@ const Experience = ({ experiences, setExperiences }) => {
 
       <Seperator className="mb-3" />
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
 
         {experiences.map((experience, index) => {
 
@@ -164,14 +169,8 @@ const Experience = ({ experiences, setExperiences }) => {
           const isDescCollapsed = descCollapsed[index]
 
           return (
-            <div
-              key={index}
-              className="border rounded-md p-4 space-y-3 bg-white"
-            >
-
-              {/* Experience header */}
+            <div key={index} className="border border-gray-200 rounded-md p-1 space-y-3 bg-white" >
               <div className="flex justify-between items-center">
-
                 <div
                   className="flex items-center gap-2 cursor-pointer"
                   onClick={() => toggleCollapse(index)}
@@ -180,7 +179,7 @@ const Experience = ({ experiences, setExperiences }) => {
                   <p className="font-medium">Experience {index + 1}</p>
                 </div>
 
-                {experiences.length > 1 && (
+                {experiences.length > 0 && (
                   <button
                     onClick={() => removeExperience(index)}
                     className="text-red-500"
@@ -188,20 +187,14 @@ const Experience = ({ experiences, setExperiences }) => {
                     <X size={16} />
                   </button>
                 )}
-
               </div>
-
               {!isCollapsed && (
                 <>
                   {Object.entries(experience).map(([key, item]) => {
-
                     if (key === "description") {
-
                       const bulletCount = item.value.length
-
                       return (
                         <div key={key} className="space-y-2">
-
                           <div
                             className="flex justify-between items-center cursor-pointer"
                             onClick={() => toggleDesc(index)}
@@ -212,7 +205,6 @@ const Experience = ({ experiences, setExperiences }) => {
                                 ({bulletCount})
                               </span>
                             </p>
-
                             {isDescCollapsed ? <ChevronRight size={14} /> : <ChevronDown size={14} />}
                           </div>
 
@@ -237,7 +229,6 @@ const Experience = ({ experiences, setExperiences }) => {
                                     }
                                     onEnter={() => addDescription(index)}
                                   />
-
                                   <button
                                     disabled={item.value.length === 1}
                                     onClick={() =>
@@ -247,7 +238,6 @@ const Experience = ({ experiences, setExperiences }) => {
                                   >
                                     <X size={16} />
                                   </button>
-
                                 </div>
                               ))}
                             </>
@@ -262,7 +252,6 @@ const Experience = ({ experiences, setExperiences }) => {
                     return (
                       <div key={key} className="space-y-1">
                         <p className="text-sm">{item.label}</p>
-
                         <input
                           value={item.value}
                           onChange={(e) =>
@@ -276,11 +265,9 @@ const Experience = ({ experiences, setExperiences }) => {
                   })}
                 </>
               )}
-
             </div>
           )
         })}
-
       </div>
     </>
   )

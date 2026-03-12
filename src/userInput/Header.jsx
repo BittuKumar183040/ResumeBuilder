@@ -69,7 +69,7 @@ const Header = ({ header, setHeader }) => {
 
   return (
     <Fragment>
-      <h1 className='text-lg'>Header Section</h1>
+      <h1 className='text-md font-semibold'>Header Section</h1>
       <Seperator className="mb-2" />
       <div className=" flex flex-col gap-2">
         {Object.keys(header).map((key) => {
@@ -77,7 +77,7 @@ const Header = ({ header, setHeader }) => {
           return (<div key={key} className=" space-y-1">
             {item.items ? <details className="group">
               <summary className="flex items-center justify-between py-2 rounded-md bg-linear-to-l from-gray-200 to-transparent cursor-pointer list-none">
-                <p className="text-md">{item.label}</p>
+                <p className="text-sm">{item.label}</p>
                 <ChevronDown className="transition-transform mr-3 text-gray-600 -rotate-90 group-open:rotate-0" />
               </summary>
               <div className="pt-1 border-l border-gray-200">
@@ -92,11 +92,11 @@ const Header = ({ header, setHeader }) => {
               </div>
             </details>
               : <>
-                <p className=' text-md'>{item.label}</p>
+                <p className=' text-sm'>{item.label}</p>
                 <input value={item.value}
                   onChange={(e) => setterOuterKeys(key, e.target.value, item.className)}
                   type='text'
-                  className=' border border-gray-200 rounded-md w-full p-2 outline-blue-200 '
+                  className=' border border-gray-200 rounded-md w-full p-2 py-1 text-sm outline-blue-200 '
                 />
               </>
             }

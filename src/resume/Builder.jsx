@@ -10,7 +10,7 @@ const Header = ({ title }) => {
   )
 }
 
-const Builder = forwardRef(({ header, experiences }, ref) => {
+const Builder = forwardRef(({ header, experiences, projects }, ref) => {
   return (
     <div ref={ref} className="resume-page border border-gray-300 rounded-sm aspect-[1/1.414] pl-8 pt-8 pr-8 pb-4 flex flex-col shrink-0 w-198.5 h-280.75">
       <section className='flex flex-col items-center gap-2'>
@@ -42,8 +42,9 @@ const Builder = forwardRef(({ header, experiences }, ref) => {
       </section>
 
       <section>
-        <Header title={"EXPERIENCE"} />
-
+        {experiences.length > 0 && (
+          <Header title={"EXPERIENCE"} />
+        )}
         {experiences?.map((experience, index) => {
           return (
             <div key={index}>
@@ -62,6 +63,7 @@ const Builder = forwardRef(({ header, experiences }, ref) => {
                   {experience.mode.value}{experience.location.value ? `, ${experience.location.value}` : ""}
                 </p>
               </div>
+
               <ol className={`list-disc pl-5 space-y-1 text-sm ml-4 ${experience.description.className}`}>
                 {experience.description.value}
               </ol>
@@ -71,88 +73,35 @@ const Builder = forwardRef(({ header, experiences }, ref) => {
       </section>
 
       <section>
-        <Header title={"PROJECTS"} />
-        <section>
-          <div className='flex justify-between gap-2 text-sm font-medium'>
-            <div className='flex gap-2 items-center'>
-              <span className="font-semibold">Model Visulization Website</span>
-              <span>|</span>
-              <span className="text-xs italic">
-                React Js, WebGL, Three Js, File Processing, Optimization
-              </span>
-            </div>
-            <div className=" flex flex-1 gap-2 ml-2">
-              <a className='font-medium' href="https://3drr.betoo.co.in/" rel="noopener noreferrer">View</a>
-              <a className='font-medium' href="https://github.com/BittuKumar183040/3DRenderer" rel="noopener noreferrer">Github</a>
-            </div>
-            <div className="text-xs italic">March 2025</div>
-          </div>
-          <ol className='list-disc pl-5 space-y-1 ml-4 text-sm'>
-            <li>
-              Designed and developed a <span className="font-semibold">browser-based 2D/3D model visualization tool </span>
-              using <span className="font-semibold">React, WebGL, and Three.js</span> to render complex models
-              directly file includes <span className="font-semibold">SVG, GLB, FBX, and VTK</span> on canvas with interactions, ensuring efficient loading
-              and accurate visualization in the browser.
-            </li>
-
-            <li>
-              Built advanced <span className="font-semibold">scene controls </span>such as
-              <span className="font-semibold"> orbit controls, axis helpers, mesh isolation</span>, and
-              <span className="font-semibold"> brightness adjustment </span>to improve model inspection and usability.
-            </li>
-
-            <li>
-              Solved <span className="font-semibold">scaling and performance challenges</span> for large
-              and small models by applying <span className="font-semibold">bounding-box fitting</span>,
-              <span className="font-semibold"> normalization</span>, and
-              <span className="font-semibold"> camera auto-framing</span> techniques for consistent representation.
-            </li>
-          </ol>
-
-        </section>
-
-        <section>
-          <div className='flex justify-between text-sm font-medium mt-2'>
-            <div className='flex gap-2 items-center'>
-              <span className="font-semibold">Windoes</span>
-              <span>|</span>
-              <span className="text-xs italic">
-                React, Microservices, JWT Auth, API Gateway, PostgreSQL
-              </span>
-            </div>
-            <div className=" flex flex-1 gap-2 ml-2">
-              <a className='font-medium' href="https://betoo.co.in/" rel="noopener noreferrer">View</a>
-              <a className='font-medium' href="https://github.com/BittuKumar183040?tab=repositories&q=windoes&type=&language=&sort=name" rel="noopener noreferrer">Github</a>
-            </div>
-            <div className="text-xs italic">Nov 2025</div>
-          </div>
-          <ol className='list-disc pl-5 space-y-1 ml-4 text-sm'>
-            <li>
-              Built a <span className="font-semibold">pixel-perfect Windows 11 - style web application </span>
-              with highly interactive UI and native-like behavior.
-            </li>
-
-            <li>
-              Designed a <span className="font-semibold">microservices architecture </span>
-              including Auth, Identity, ...Services, and API Gateway.
-            </li>
-
-            <li>
-              Implemented <span className="font-semibold">centralized JWT validation </span>
-              at the gateway for consistent authorization.
-            </li>
-            <li>Implemented <span className="font-semibold">Object as S3 and PVC </span>for PnP migration for my storage solution.</li>
-            <li>
-              Integrated <span className="font-semibold">OpenAPI and Swagger UI </span>
-              for API documentation and testing.
-            </li>
-
-            <li>
-              Optimized client-side performance using <span className="font-semibold">browser memory
-                and state management </span>.
-            </li>
-          </ol>
-        </section>
+        { projects.length > 0 && (
+          <Header title={"PROJECTS"} />
+        )}
+        { projects?.map((project, index) => {
+          const tech = project.technology.value.join(", ")
+          return (
+            <section key={index}>
+              <div className="flex justify-between gap-2 text-sm font-medium">
+                <div className="flex gap-2 items-center">
+                  <span className={project.title.className}>{project.title.value}</span>
+                  <span>|</span>
+                  <span className={project.technology.className}>{tech}</span>
+                </div>
+                <div className="flex flex-1 gap-2 ml-2">
+                  {project.live.value && (
+                    <a className={project.live.className} href={project.live.value} rel="noopener noreferrer" target="_blank" >View</a>
+                  )}
+                  {project.github.value && (
+                    <a className={project.github.className} href={project.github.value} rel="noopener noreferrer" target="_blank" >Github</a>
+                  )}
+                </div>
+                <div className={project.date.className}>{project.date.value}</div>
+              </div>
+              <ol className={project.description.className}>
+                {project.description.value}
+              </ol>
+            </section>
+          )})
+        }
       </section>
 
       <section>
