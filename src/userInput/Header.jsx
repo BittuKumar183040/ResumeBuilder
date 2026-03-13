@@ -69,7 +69,7 @@ const Header = ({ header, setHeader }) => {
 
   return (
     <Fragment>
-      <h1 className='text-md font-semibold'>Header Section</h1>
+      <h1 className="text-md font-semibold -ml-1">Header Section</h1>
       <Seperator className="mb-2" />
       <div className=" flex flex-col gap-2">
         {Object.keys(header).map((key) => {

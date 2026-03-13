@@ -48,7 +48,9 @@ const EditableBullet = ({ html, onChange, onEnter }) => {
 
 const Experience = ({ experiences, setExperiences }) => {
 
-  const [collapsedExperiences, setCollapsedExperiences] = useState({})
+  const [collapsedExperiences, setCollapsedExperiences] = useState(
+    () => Object.fromEntries(experiences.map((_, i) => [i, true]))
+  )
   const [descCollapsed, setDescCollapsed] = useState({})
 
   const toggleCollapse = (index) => {
@@ -149,7 +151,7 @@ const Experience = ({ experiences, setExperiences }) => {
   return (
     <>
       <div className="flex items-center justify-between mt-4">
-        <h1 className="text-md font-semibold">Experiences</h1>
+        <h1 className="text-md font-semibold -ml-1">Experiences</h1>
 
         <button
           onClick={addExperience}
@@ -211,10 +213,7 @@ const Experience = ({ experiences, setExperiences }) => {
                           {!isDescCollapsed && (
                             <>
                               <div className="flex justify-end">
-                                <button
-                                  onClick={() => addDescription(index)}
-                                  className="text-blue-500 text-sm"
-                                >
+                                <button onClick={() => addDescription(index)} className="text-blue-500 text-sm">
                                   + Add
                                 </button>
                               </div>
@@ -224,16 +223,12 @@ const Experience = ({ experiences, setExperiences }) => {
 
                                   <EditableBullet
                                     html={getHTML(li)}
-                                    onChange={(html) =>
-                                      updateDescription(index, liIndex, html)
-                                    }
+                                    onChange={(html) => updateDescription(index, liIndex, html) }
                                     onEnter={() => addDescription(index)}
                                   />
                                   <button
                                     disabled={item.value.length === 1}
-                                    onClick={() =>
-                                      removeDescription(index, liIndex)
-                                    }
+                                    onClick={() =>  removeDescription(index, liIndex) }
                                     className="text-red-500 disabled:opacity-30"
                                   >
                                     <X size={16} />
@@ -242,7 +237,6 @@ const Experience = ({ experiences, setExperiences }) => {
                               ))}
                             </>
                           )}
-
                         </div>
                       )
                     }

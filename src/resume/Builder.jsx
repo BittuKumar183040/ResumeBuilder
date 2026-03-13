@@ -10,7 +10,7 @@ const Header = ({ title }) => {
   )
 }
 
-const Builder = forwardRef(({ header, experiences, projects }, ref) => {
+const Builder = forwardRef(({ header, experiences, projects, skills, education, certifications }, ref) => {
   return (
     <div ref={ref} className="resume-page border border-gray-300 rounded-sm aspect-[1/1.414] pl-8 pt-8 pr-8 pb-4 flex flex-col shrink-0 w-198.5 h-280.75">
       <section className='flex flex-col items-center gap-2'>
@@ -73,10 +73,10 @@ const Builder = forwardRef(({ header, experiences, projects }, ref) => {
       </section>
 
       <section>
-        { projects.length > 0 && (
+        {projects.length > 0 && (
           <Header title={"PROJECTS"} />
         )}
-        { projects?.map((project, index) => {
+        {projects?.map((project, index) => {
           const tech = project.technology.value.join(", ")
           return (
             <section key={index}>
@@ -100,63 +100,76 @@ const Builder = forwardRef(({ header, experiences, projects }, ref) => {
                 {project.description.value}
               </ol>
             </section>
-          )})
+          )
+        })
         }
       </section>
 
       <section>
-        <Header title={"TECHNICAL SKILLS"} />
-        <div className="space-y-1 text-sm ml-3">
-          <p>
-            <span className="font-semibold">Languages: </span>
-            <span>JavaScript, Python, Java, SQL, HTML/CSS</span>
-          </p>
-          <p>
-            <span className="font-semibold">Developer Tools: </span>
-            <span>Git/GitHub/Azure Repos, Podman, Bruno, VS Code, IntelliJ, PyCharm</span>
-          </p>
-          <p>
-            <span className="font-semibold">Technologies/Frameworks: </span>
-            <span>React, Redux, Node.js, FastAPI, Spring Boot, Express, PostgreSQL </span>
-          </p>
-          <p>
-            <span className="font-semibold">Deployment & DevOps: </span>
-            <span>Containerization, CI/CD, SonarQube, Pen Testing, AWS, S3, PVC </span>
-          </p>
-          <p>
-            <span className="font-semibold">Management Skills: </span>
-            <span>Agile delivery, Sprint Planning, Task Assignment, Code Review Oversight, Cross-Team Communication, System Architecture Understanding, Team Mentoring</span>
-          </p>
+        {skills.length > 0 && (
+          <Header title={"TECHNICAL SKILLS"} />
+        )}
+        <div className="space-y-1 ml-3">
+          {skills.map((skill, index) => {
+            const items = skill.items.value.join(", ")
+            return (
+              <p key={index}>
+                <span className={skill.category.className}>
+                  {skill.category.value}:
+                </span>
+                <span className={skill.items.className}>
+                  {" "}{items}
+                </span>
+              </p>
+            )
+          })}
         </div>
       </section>
 
       <section>
-        <Header title={"EDUCATION"} />
-        <div className='flex justify-between text-sm font-medium mt-2'>
-          <p>MCA - Master in Computer Application</p>
-          <p className="italic">Bhopal, Madhya Pradesh, IN</p>
-        </div>
+        {education.length > 0 && <Header title={"EDUCATION"} />}
+        {education.map((edu, index) => (
+          <div key={index}>
+            <div className="flex justify-between text-sm font-medium mt-2">
+              <p className={edu.degree.className}>
+                {edu.degree.value}
+              </p>
 
-        <div className="flex justify-between text-sm mt-1">
-          <p className="font-medium text-xs">
-            LNCT - Lakshmi Narain College of Technology
-          </p>
-          <p className="italic text-xs">
-            2021 - 2023
-          </p>
-        </div>
+              <p className={edu.location.className}>
+                {edu.location.value}
+              </p>
+            </div>
+            <div className="flex justify-between text-sm mt-1">
+              <p className={edu.college.className}>
+                {edu.college.value}
+              </p>
+              <p className={edu.duration.className}>
+                {edu.duration.value}
+              </p>
+            </div>
+          </div>
+        ))}
       </section>
 
+
       <section>
-        <Header title={"CERTIFICATIONS / ACHIEVEMENTS"} />
-        <ol className='list-disc pl-5 space-y-1 text-sm mt-2 ml-4'>
-          <li>
-            <span className="font-medium">
-              Certified Full Stack Developer
-            </span>
-            <span className="italic"> – 2023</span>
-            <span> | Mentorkart</span>
-          </li>
+        {certifications.length > 0 && (
+          <Header title={"CERTIFICATIONS / ACHIEVEMENTS"} />
+        )}
+        <ol className="list-disc pl-5 space-y-1 text-sm mt-2 ml-4">
+          {certifications.map((cert, index) => (
+            <li key={index}>
+              <span className={cert.title.className}>
+                {cert.title.value}
+              </span>
+              {cert.year.value && (
+                <span className={cert.year.className}> {" - "}{cert.year.value} </span>
+              )}
+              {cert.issuer.value && (
+                <span> {" | "}{cert.issuer.value} </span>
+              )}
+            </li>
+          ))}
         </ol>
       </section>
     </div>

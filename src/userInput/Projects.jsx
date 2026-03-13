@@ -49,7 +49,10 @@ const EditableBullet = ({ html, onChange, onEnter }) => {
 
 const Projects = ({ projects, setProjects }) => {
 
-  const [collapsedProjects, setCollapsedProjects] = useState({})
+  const [collapsedProjects, setCollapsedProjects] = useState(
+    () => Object.fromEntries(projects.map((_, i) => [i, true]))
+  )
+
   const [descCollapsed, setDescCollapsed] = useState({})
 
   const toggleCollapse = (index) => {
@@ -156,7 +159,7 @@ const Projects = ({ projects, setProjects }) => {
   return (
     <>
       <div className="flex items-center justify-between mt-4">
-        <h1 className="text-md font-semibold">Projects</h1>
+        <h1 className="text-md font-semibold -ml-1">Projects</h1>
         <button onClick={addProject} className="flex items-center gap-1 text-blue-500 text-sm" >
           <Plus size={16} /> Add
         </button>
@@ -216,9 +219,9 @@ const Projects = ({ projects, setProjects }) => {
                               <div className="flex justify-end">
                                 <button
                                   onClick={() => addDescription(index)}
-                                  className="text-blue-500 text-sm"
+                                  className="text-blue-500 text-sm flex items-center gap-1 bg-gray-200 px-2 rounded-md "
                                 >
-                                  <X size={16} /> Add
+                                  <X size={14} /> Add
                                 </button>
                               </div>
 
@@ -233,7 +236,7 @@ const Projects = ({ projects, setProjects }) => {
                                   <button
                                     disabled={item.value.length === 1}
                                     onClick={() => removeDescription(index, liIndex)}
-                                    className="text-red-500 disabled:opacity-30"
+                                    className="text-red-500 disabled:opacity-30 "
                                   >
                                     <X size={16} />
                                   </button>

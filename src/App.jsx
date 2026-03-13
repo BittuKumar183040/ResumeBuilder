@@ -8,6 +8,9 @@ import ZoomHandler from './components/ZoomHandler';
 import { SeperatorVertical } from './components/Seperator';
 import Experience from './userInput/Experience';
 import Projects from './userInput/Projects';
+import Skills from './userInput/Skills';
+import Education from './userInput/Education';
+import Certification from './userInput/Certification';
 
 function App() {
   const [modifyEnabled, setModifyEnable] = useState(false);
@@ -86,11 +89,11 @@ function App() {
 
   const [projects, setProjects] = useState([
     {
-      title: {label: "Title", className: "font-semibold", value: "Model Visulization Website"},
-      technology: {label: "Technology", className: "text-xs italic", value: ["React JS", "WebGL", "Three JS", "File Processing", "Optimization"]},
-      live: {label: "View", className: "font-medium", value: "https://3drr.betoo.co.in"},
-      github: {label: "Github", className: "font-medium", value: "https://github.com/BittuKumar183040/3DRenderer"},
-      date: {label: "Date", className: "text-xs italic", value: "March 2025"},
+      title: { label: "Title", className: "font-semibold", value: "Model Visulization Website" },
+      technology: { label: "Technology", className: "text-xs italic", value: ["React JS", "WebGL", "Three JS", "File Processing", "Optimization"] },
+      live: { label: "View", className: "font-medium", value: "https://3drr.betoo.co.in" },
+      github: { label: "Github", className: "font-medium", value: "https://github.com/BittuKumar183040/3DRenderer" },
+      date: { label: "Date", className: "text-xs italic", value: "March 2025" },
       description: {
         label: "Description",
         className: "list-disc pl-5 space-y-1 ml-4 text-sm",
@@ -102,11 +105,11 @@ function App() {
       }
     },
     {
-      title: {label: "Title", className: "font-semibold", value: "Windoes"},
-      technology: {label: "Technology", className: "text-xs italic", value: ["React", "Redux", "Express.js", "FastAPI", "Microservices", "Spring Boot", "JWT Auth", "PostgreSQL"]},
-      live: {label: "View", className: "font-medium", value: "https://betoo.co.in"},
-      github: {label: "Github", className: "font-medium", value: "https://github.com/BittuKumar183040?tab=repositories&q=windoes" },
-      date: {label: "Date", className: "text-xs italic", value: "Nov 2025"},
+      title: { label: "Title", className: "font-semibold", value: "Windoes" },
+      technology: { label: "Technology", className: "text-xs italic", value: ["React", "Redux", "Express.js", "FastAPI", "Microservices", "Spring Boot", "JWT Auth", "PostgreSQL"] },
+      live: { label: "View", className: "font-medium", value: "https://betoo.co.in" },
+      github: { label: "Github", className: "font-medium", value: "https://github.com/BittuKumar183040?tab=repositories&q=windoes" },
+      date: { label: "Date", className: "text-xs italic", value: "Nov 2025" },
       description: {
         label: "Description",
         className: "list-disc pl-5 space-y-1 ml-4 text-sm",
@@ -121,6 +124,47 @@ function App() {
       }
     }
   ])
+
+  const [skills, setSkills] = useState([
+    {
+      category: { label: "Category", className: "font-semibold text-sm", value: "Languages" },
+      items: { label: "Items", className: "text-sm", value: ["JavaScript", "Python", "Java", "SQL", "HTML/CSS"] }
+    },
+    {
+      category: { label: "Category", className: "font-semibold text-sm", value: "Developer Tools" },
+      items: { label: "Items", className: "text-sm", value: ["Git", "GitHub", "Azure Repos", "Podman", "Bruno", "VS Code", "IntelliJ", "PyCharm"] }
+    },
+    {
+      category: { label: "Category", className: "font-semibold text-sm", value: "Technologies/Frameworks" },
+      items: { label: "Items", className: "text-sm", value: ["React", "Redux", "Node.js", "FastAPI", "Spring Boot", "Express", "PostgreSQL"] }
+    },
+    {
+      category: { label: "Category", className: "font-semibold text-sm", value: "Deployment & DevOps" },
+      items: { label: "Items", className: "text-sm", value: ["Containerization", "CI/CD", "SonarQube", "Pen Testing", "AWS", "S3", "PVC"] }
+    },
+    {
+      category: { label: "Category", className: "font-semibold text-sm", value: "Management Skills" },
+      items: { label: "Items", className: "text-sm", value: ["Agile delivery", "Sprint Planning", "Task Assignment", "Code Review Oversight", "Cross-Team Communication", "System Architecture Understanding", "Team Mentoring"] }
+    }
+  ])
+
+  const [education, setEducation] = useState([
+    {
+      degree: { label: "Degree", className: "text-sm font-medium", value: "MCA - Master in Computer Application" },
+      location: { label: "Location", className: "italic text-sm", value: "Bhopal, Madhya Pradesh, IN" },
+      college: { label: "College", className: "font-medium text-xs", value: "LNCT - Lakshmi Narain College of Technology" },
+      duration: { label: "Duration", className: "italic text-xs", value: "2021 - 2023" }
+    }
+  ])
+
+  const [certifications, setCertifications] = useState([{ 
+    title: { label: "Title", className: "font-medium", value: "Certified Full Stack Developer" },
+    year: { label: "Year", className: "italic", value: "2023" },
+    issuer: { label: "Issuer", className: "", value: "Mentorkart" }
+  }
+])
+
+
 
   useEffect(() => {
     if (modifyEnabled && resumeContent.current) {
@@ -143,10 +187,13 @@ function App() {
             <Header header={header} setHeader={setHeader} />
             <Experience experiences={experiences} setExperiences={setExperiences} />
             <Projects projects={projects} setProjects={setProjects} />
+            <Skills skills={skills} setSkills={setSkills} />
+            <Education education={education} setEducation={setEducation} />
+            <Certification certifications={certifications} setCertifications={setCertifications} />
           </div>
         </div>
         <div style={{ zoom: zoom }} className={`resume-divider flex items-start xl:justify-center w-full relative overflow-auto shadow-inner transition-all`}>
-          <Builder header={header} experiences={experiences} projects={projects} ref={resumeContent} />
+          <Builder header={header} experiences={experiences} projects={projects} skills={skills} education={education} certifications={certifications}  ref={resumeContent} />
         </div>
       </div>
       <div className=' flex h-12 justify-between items-center p-4 bg-white gap-2 shadow-inner mt-2'>
