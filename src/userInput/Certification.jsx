@@ -55,29 +55,19 @@ const Certification = ({ certifications, setCertifications }) => {
       <div className="flex flex-col gap-3">
 
         {certifications.map((cert, index) => {
-
           const isCollapsed = collapsed[index]
-
           return (
             <div
               key={index}
-              className="border border-gray-200 rounded-md p-4 space-y-2 bg-white"
+              className="border border-gray-200 rounded-md p-1 px-2 space-y-2 bg-white"
             >
-
               <div className="flex justify-between items-center">
-
                 <div
                   className="flex items-center gap-2 cursor-pointer flex-1 min-w-0"
                   onClick={() => toggleCollapse(index)}
                 >
-                  {isCollapsed
-                    ? <ChevronRight size={16}/>
-                    : <ChevronDown size={16}/>
-                  }
-
-                  <p className="font-medium truncate">
-                    {cert.title.value || `Certification ${index + 1}`}
-                  </p>
+                  {isCollapsed ? <ChevronRight size={16}/> : <ChevronDown size={16}/> }
+                  <p className="font-medium truncate"> {cert.title.value || `Certification ${index + 1}`} </p>
                 </div>
 
                 <button
@@ -93,17 +83,12 @@ const Certification = ({ certifications, setCertifications }) => {
                 <>
                   {Object.entries(cert).map(([key, item]) => (
                     <div key={key} className="space-y-1">
-
                       <p className="text-sm">{item.label}</p>
-
                       <input
                         value={item.value}
-                        onChange={(e) =>
-                          updateField(index, key, e.target.value)
-                        }
-                        className="border border-gray-200 rounded-md w-full p-2"
+                        onChange={(e) => updateField(index, key, e.target.value)}
+                        className="border border-gray-200 rounded-md w-full px-1 py-1"
                       />
-
                     </div>
                   ))}
                 </>

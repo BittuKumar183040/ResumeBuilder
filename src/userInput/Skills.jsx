@@ -16,9 +16,7 @@ const Skills = ({ skills, setSkills }) => {
   const updateField = (index, key, value) => {
     setSkills(prev =>
       prev.map((skill, i) =>
-        i === index
-          ? { ...skill, [key]: { ...skill[key], value } }
-          : skill
+        i === index ? { ...skill, [key]: { ...skill[key], value } } : skill
       )
     )
   }
@@ -50,7 +48,6 @@ const Skills = ({ skills, setSkills }) => {
       <div className="flex flex-col gap-3">
         {skills.map((skill, index) => {
           const isCollapsed = collapsedSkills[index]
-
           return (
             <div key={index} className="border border-gray-200 rounded-md p-2 py-1 space-y-2 bg-white" >
               <div className="flex justify-between items-center">
@@ -59,7 +56,7 @@ const Skills = ({ skills, setSkills }) => {
                   onClick={() => toggleCollapse(index)}
                 >
                   {isCollapsed ? <ChevronRight size={16} /> : <ChevronDown size={16} />}
-                  <p className="font-medium truncate"> Skill {index + 1} </p>
+                  <p className="font-medium truncate"> {skill.category.value ? skill.category.value : `Skill ${index + 1}`} </p>
                 </div>
                 <button onClick={() => removeSkill(index)} className="text-red-500 ml-2" > <X size={16} /> </button>
               </div>
@@ -70,9 +67,7 @@ const Skills = ({ skills, setSkills }) => {
                     <p className="text-sm">{skill.category.label}</p>
                     <input
                       value={skill.category.value}
-                      onChange={(e) =>
-                        updateField(index, "category", e.target.value)
-                      }
+                      onChange={(e) => updateField(index, "category", e.target.value)}
                       className="border text-sm border-gray-200 rounded-md w-full px-2 py-1"
                     />
                   </div>
@@ -81,13 +76,7 @@ const Skills = ({ skills, setSkills }) => {
                     <p className="text-sm">{skill.items.label}</p>
                     <input
                       value={skill.items.value.join(", ")}
-                      onChange={(e) =>
-                        updateField(
-                          index,
-                          "items",
-                          e.target.value.split(",").map(s => s.trim())
-                        )
-                      }
+                      onChange={(e) => updateField(index, "items", e.target.value.split(",").map(s => s.trim()))}
                       className="border text-sm border-gray-200 rounded-md w-full px-2 py-1"
                     />
                   </div>

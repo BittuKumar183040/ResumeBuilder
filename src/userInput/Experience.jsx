@@ -178,7 +178,7 @@ const Experience = ({ experiences, setExperiences }) => {
                   onClick={() => toggleCollapse(index)}
                 >
                   {isCollapsed ? <ChevronRight size={16} /> : <ChevronDown size={16} />}
-                  <p className="font-medium">Experience {index + 1}</p>
+                  <p className="font-medium">{experience.designation.value ? experience.designation.value : `Experience ${index + 1}`}</p>
                 </div>
 
                 {experiences.length > 0 && (

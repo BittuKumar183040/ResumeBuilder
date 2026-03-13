@@ -129,7 +129,7 @@ const Builder = forwardRef(({ header, experiences, projects, skills, education, 
       <section>
         {education.length > 0 && <Header title={"EDUCATION"} />}
         {education.map((edu, index) => (
-          <div key={index}>
+          <div key={index} className="ml-3">
             <div className="flex justify-between text-sm font-medium mt-2">
               <p className={edu.degree.className}>
                 {edu.degree.value}

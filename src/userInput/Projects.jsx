@@ -181,7 +181,7 @@ const Projects = ({ projects, setProjects }) => {
                   onClick={() => toggleCollapse(index)}
                 >
                   {isCollapsed ? <ChevronRight size={16} /> : <ChevronDown size={16} />}
-                  <p className="font-medium">Project {index + 1}</p>
+                  <p className="font-medium">{project.title.value ? project.title.value : `Project ${index + 1}`}</p>
                 </div>
 
                 {projects.length > 0 && (
