@@ -114,10 +114,10 @@ const Experience = ({ experiences, setExperiences }) => {
   const addExperience = () => {
     const template = {
       designation: { label: "Designation", className: "tracking-wide text-sm font-semibold", value: "" },
-      company:     { label: "Company",     className: "text-xs font-medium",                 value: "" },
-      duration:    { label: "Duration",    className: "italic text-sm",                      value: { start: "", end: "" } },
-      mode:        { label: "Mode",        className: "italic text-xs",                      value: "" },
-      location:    { label: "Location",    className: "italic text-xs",                      value: "" },
+      company: { label: "Company", className: "text-xs font-medium", value: "" },
+      duration: { label: "Duration", className: "italic text-sm", value: { start: "", end: "" } },
+      mode: { label: "Mode", className: "italic text-xs", value: "" },
+      location: { label: "Location", className: "italic text-xs", value: "" },
       description: { label: "Description", className: "list-disc pl-5 space-y-1 text-sm ml-4", value: [<li key={Date.now()}></li>] }
     }
     setExperiences(prev => [...prev, template])
@@ -126,6 +126,25 @@ const Experience = ({ experiences, setExperiences }) => {
 
   const removeExperience = (index) => {
     setExperiences(prev => prev.filter((_, i) => i !== index))
+  }
+
+  const setDuration = (index, field, value) => {
+    setExperiences(prev =>
+      prev.map((exp, i) =>
+        i === index
+          ? {
+            ...exp,
+            duration: {
+              ...exp.duration,
+              value: {
+                ...exp.duration.value,
+                [field]: value
+              }
+            }
+          }
+          : exp
+      )
+    )
   }
 
   return (
@@ -242,7 +261,33 @@ const Experience = ({ experiences, setExperiences }) => {
                       )
                     }
 
-                    if (typeof item.value === "object") return null
+                    if (key === "duration") {
+                      return (
+                        <div key={key} className="space-y-1">
+                          <label className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+                            {item.label}
+                          </label>
+
+                          <div className="grid grid-cols-2 gap-2">
+
+                            <input
+                              value={item.value.start}
+                              placeholder="Start"
+                              onChange={(e) => setDuration(index, "start", e.target.value)}
+                              className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                            />
+
+                            <input
+                              value={item.value.end}
+                              placeholder="End"
+                              onChange={(e) => setDuration(index, "end", e.target.value)}
+                              className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                            />
+
+                          </div>
+                        </div>
+                      )
+                    }
 
                     return (
                       <div key={key} className="space-y-1">

@@ -33,7 +33,6 @@ const Certification = ({ certifications, setCertifications }) => {
 
   return (
     <div className="mt-5">
-      {/* ── Section header ── */}
       <div className="flex justify-between items-center mb-1">
         <div className="flex items-center gap-2">
           <Award size={14} className="text-indigo-400" />
@@ -59,7 +58,6 @@ const Certification = ({ certifications, setCertifications }) => {
               key={index}
               className="border border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden"
             >
-              {/* Card header */}
               <div
                 className="flex justify-between items-center px-3 py-2.5 cursor-pointer hover:bg-slate-50 transition-colors select-none"
                 onClick={() => toggleCollapse(index)}

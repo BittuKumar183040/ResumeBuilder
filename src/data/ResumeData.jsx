@@ -60,7 +60,7 @@ export const experiencesData = [
     duration: {
       label: "Duration",
       className: "italic text-sm",
-      value: { start: "June 2023", end: "Present" }
+      value: { start: "Jan 2023", end: "Present" }
     },
     mode: {
       label: "Mode",
@@ -91,34 +91,12 @@ export const experiencesData = [
 
 export const projectsData = [
   {
-    title: {
-      label: "Title",
-      className: "font-semibold",
-      value: "3D Model Visualization"
-    },
-    technology: {
-      label: "Technology",
-      className: "text-xs italic",
-      value: ["React", "WebGL", "Three.js", "JavaScript", "File Processing", "Performance Optimization"]
-    },
-    live: {
-      label: "Live URL",
-      className: "font-medium",
-      value: "https://3drr.betoo.co.in"
-    },
-    github: {
-      label: "GitHub",
-      className: "font-medium",
-      value: "https://github.com/BittuKumar183040/3DRenderer"
-    },
-    date: {
-      label: "Date",
-      className: "text-xs italic",
-      value: "March 2025"
-    },
-    description: {
-      label: "Description",
-      className: "list-disc pl-5 space-y-px ml-2 text-sm",
+    title: { label: "Title", className: "font-semibold", value: "3D Model Visualization" },
+    technology: { label: "Technology", className: "text-xs italic", value: ["React", "WebGL", "Three.js", "JavaScript", "File Processing", "Performance Optimization"] },
+    live: { label: "Live URL", className: "font-medium", value: "https://3drr.betoo.co.in" },
+    github: { label: "GitHub", className: "font-medium", value: "https://github.com/BittuKumar183040/3DRenderer" },
+    date: { label: "Date", className: "text-xs italic", value: "March 2025" },
+    description: { label: "Description", className: "list-disc pl-5 space-y-px ml-2 text-sm",
       value: [
         <li key={1}>Designed and developed a <span className="font-semibold">browser-based 2D and 3D model visualization tool</span> using React, WebGL, and Three.js, supporting multiple mesh file formats.</li>,
         <li key={2}>Implemented advanced <span className="font-semibold">scene controls</span> including orbit controls, axis helpers, mesh isolation, and dynamic lighting for interactive model inspection.</li>,
@@ -221,6 +199,6 @@ export const certificationsData = [
   {
     title:  { label: "Title",  className: "font-medium", value: "React - The Complete Guide (Hooks, Redux, TypeScript)" },
     year:   { label: "Year",   className: "italic",      value: "2023" },
-    issuer: { label: "Issuer", className: "",            value: "Udemy" }
+    issuer: { label: "Issuer", className: "",            value: "Mentorkart" }
   }
 ]
