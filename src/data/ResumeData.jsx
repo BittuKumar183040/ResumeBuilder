@@ -47,34 +47,12 @@ export const headerData = {
 
 export const experiencesData = [
   {
-    designation: {
-      label: "Designation",
-      className: "tracking-wide text-sm font-semibold",
-      value: "Full Stack Software Engineer"
-    },
-    company: {
-      label: "Company",
-      className: "text-xs font-medium",
-      value: "BosonQ Psi Technology Pvt. Ltd."
-    },
-    duration: {
-      label: "Duration",
-      className: "italic text-sm",
-      value: { start: "Jan 2023", end: "Present" }
-    },
-    mode: {
-      label: "Mode",
-      className: "italic text-xs",
-      value: "Remote and Hybrid"
-    },
-    location: {
-      label: "Location",
-      className: "italic text-xs",
-      value: "Bangalore, Karnataka, India"
-    },
-    description: {
-      label: "Description",
-      className: "list-disc pl-5 space-y-px text-sm ml-2",
+    designation: { label: "Designation", className: "tracking-wide text-sm font-semibold", value: "Full Stack Software Engineer" },
+    company: { label: "Company", className: "text-xs font-medium", value: "BosonQ Psi Technology Pvt. Ltd." },
+    duration: { label: "Duration", className: "italic text-sm", value: { start: "Jan 2023", end: "Present" } },
+    mode: { label: "Mode", className: "italic text-xs", value: "Remote and Hybrid" },
+    location: { label: "Location", className: "italic text-xs", value: "Bangalore, Karnataka, India" },
+    description: { label: "Description", className: "list-disc pl-5 space-y-px text-sm ml-2",
       value: [
         <li key={1}>Architected and delivered a <span className="font-semibold">full-stack microservices simulation platform</span> serving 1,000+ active users and processing 200-500 REST API requests per day, built with React, Spring Boot, FastAPI, AWS S3, and PVC storage.</li>,
         <li key={2}>Engineered a <span className="font-semibold">real-time 2D and 3D visualization engine</span> using WebGL and Three.js, reducing client-side render latency by 35% through bounding-box fitting and camera auto-framing optimizations.</li>,
@@ -104,7 +82,7 @@ export const projectsData = [
     }
   },
   {
-    title: { label: "Title", className: "font-semibold", value: "Windows Eleven" },
+    title: { label: "Title", className: "font-semibold", value: "Windows" },
     technology: { label: "Technology", className: "text-xs italic", value: ["React", "Redux", "Express.js", "Spring Boot", "Microservices", "JWT Authentication", "PostgreSQL"] },
     live: { label: "Live URL", className: "font-medium", value: "https://betoo.co.in" },
     github: { label: "GitHub", className: "font-medium", value: "https://github.com/BittuKumar183040?tab=repositories&q=windoes" },

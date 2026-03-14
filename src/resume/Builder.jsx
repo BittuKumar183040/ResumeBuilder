@@ -11,14 +11,20 @@ const Header = ({ title }) => {
 }
 
 const Builder = forwardRef(({ header, experiences, projects, skills, education, certifications, settings }, ref) => {
-  console.log(settings)
-  const selectedPreview = settings.previewType.find((o) => o.selected)?.value ?? "exact";
+  const selectedPreview  = settings.previewType.find((o) => o.selected)?.value ?? "exact";
   const selectedPageSize = settings.pageSize.find((o) => o.selected)?.value ?? "aspect-[1/1.414] w-198.5 h-280.75";
+  const selectedFont     = settings.font.find((o) => o.selected)?.value ?? "font-sans";
+  const zoom             = settings.zoom.value ?? 1;
 
-  const pageClass = selectedPreview === "exact" ? selectedPageSize : "";
+  const pageClass = selectedPreview === "exact" ? selectedPageSize : "w-full";
 
   return (
-    <div ref={ref} className={`resume-page border border-gray-300 rounded-sm pl-6 pr-6 pt-4 pb-4 flex flex-col shrink-0 ${pageClass}`}>
+    <div
+      style={{ transform: `scale(${zoom})`, fontFamily: `'${selectedFont}', sans-serif`, transformOrigin: "top left"}}
+      className={`resume-page border border-gray-300 rounded-sm pl-6 pr-6 pt-4 pb-4 flex flex-col shrink-0
+        ${pageClass}`}
+      ref={ref}
+    >
       <section className='flex flex-col items-center gap-px'>
         <h1 className={header.fullname.className}>
           {header.fullname.value}

@@ -11,6 +11,8 @@ import Education from './userInput/Education';
 import Certification from './userInput/Certification';
 import { certificationsData, educationData, experiencesData, headerData, projectsData, skillsData } from './data/ResumeData';
 import SettingsToolbar from './components/SettingsToolbar';
+import { FONTS } from './data/fonts';
+
 
 function App() {
   const [sidePanelCollapse, setSidePanelCollapse] = useState(false);
@@ -31,12 +33,7 @@ function App() {
       {label: "Letter", value: "aspect-[1.275/1] w-200 h-157.48"},
       {label: "Legal", value: "aspect-[1.275/1] w-200 h-216"}
     ],
-    font: [
-      { label: "Sans Serif", value: "font-sans" },
-      { label: "Serif", value: "font-serif" },
-      { label: "Monospace", value: "font-mono" }
-    ],
-    color: [{ label: "Black", value: "text-black" }],
+    font: FONTS,
     previewType: [
       { label: "Exact", value: "exact" },
       { label: "Webpage", value: "webpage" }
@@ -59,7 +56,7 @@ function App() {
           ${sidePanelCollapse ? "w-8 p-0" : " xl:w-110 md:w-82 w-60 p-4"}`}>
 
           <div className='flex items-center justify-between border-b-2 border-gray-300'>
-            {!sidePanelCollapse && <p className=' font-medium truncate'>Betoo Resume Builder</p>}
+            {!sidePanelCollapse && <img src="/logo.png" alt="Logo" className='h-6' />}
             <button className=' p-2 cursor-pointer' onClick={() => setSidePanelCollapse(!sidePanelCollapse)}> <MenuOutlined /></button>
           </div>
 

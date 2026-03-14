@@ -25,10 +25,7 @@ const SettingsToolbar = ({ settings, setSettings }) => {
       <SettingSelect label="Page" options={settings.pageSize} onChange={(v) => update("pageSize", v)} />
 
       <Divider />
-      <SettingSelect label="Font" options={settings.font} onChange={(v) => update("font", v)} />
-
-      <Divider />
-      <SettingSelect label="Color" options={settings.color} onChange={(v) => update("color", v)} />
+      <FontSelect options={settings.font} onChange={(v) => update("font", v)} />
 
       <Divider />
       <SegmentedToggle options={settings.previewType} onChange={(v) => update("previewType", v)} />
@@ -69,6 +66,33 @@ const SegmentedToggle = ({ options, onChange }) => {
         </button>
       ))}
     </div>
+  );
+};
+
+const FontSelect = ({ options, onChange }) => {
+  const selected = options.find((o) => o.selected) ?? options[0];
+  return (
+    <label className="flex items-center gap-1.5">
+      <span className="text-gray-400 text-xs font-medium uppercase tracking-wide">Font</span>
+      <select
+        value={selected.value}
+        onChange={(e) => onChange(e.target.value)}
+        style={{ fontFamily: `'${selected.value}', sans-serif` }}
+        className="h-8 px-2 border border-gray-300 rounded-md outline-none text-gray-800 bg-white"
+      >
+        {["Sans Serif", "Serif", "Mono"].map((cat) => (
+          <optgroup key={cat} label={cat}>
+            {options
+              .filter((o) => o.category === cat)
+              .map((o) => (
+                <option key={o.value} value={o.value} style={{ fontFamily: `'${o.value}', sans-serif` }}>
+                  {o.label}
+                </option>
+              ))}
+          </optgroup>
+        ))}
+      </select>
+    </label>
   );
 };
 
