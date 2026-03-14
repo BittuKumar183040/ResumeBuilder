@@ -4,6 +4,7 @@ import Resume from './pages/Resume'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import GettingStarted from './pages/GettingStarted'
+import Templates from './pages/Templates'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/getting-started" element={<GettingStarted />} />
+        <Route path="/templates" element={<Templates />} />
       </Routes>
     </BrowserRouter>
   )

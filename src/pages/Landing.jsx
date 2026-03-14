@@ -73,9 +73,10 @@ const Landing = () => {
             <button className="px-7 py-3.5 bg-emerald-600 text-white font-bold text-sm rounded-xl hover:bg-emerald-700 shadow-lg shadow-emerald-200 transition-all duration-200 hover:-translate-y-0.5">
               Build My Resume — Free
             </button>
-            <button className="px-7 py-3.5 bg-white text-gray-700 font-semibold text-sm rounded-xl border border-gray-200 hover:border-gray-400 hover:text-gray-900 transition-all duration-200">
+            
+            <Link to="/templates" className="px-7 py-3.5 bg-white text-gray-700 font-semibold text-sm rounded-xl border border-gray-200 hover:border-gray-400 hover:text-gray-900 transition-all duration-200">
               View Templates →
-            </button>
+            </Link>
           </div>
 
           {/* <div className="flex items-center justify-center divide-x divide-gray-200">

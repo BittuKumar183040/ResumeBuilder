@@ -83,10 +83,7 @@ const Login = () => {
                   <label className="block text-sm font-semibold text-gray-700">
                     Password
                   </label>
-                  <a
-                    href="#"
-                    className="text-xs text-emerald-600 font-semibold hover:underline"
-                  >
+                  <a href="#" className="text-xs text-emerald-600 font-semibold hover:underline" >
                     Forgot password?
                   </a>
                 </div>
@@ -104,11 +101,7 @@ const Login = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                   >
-                    {showPassword ? (
-                      <LucideEye />
-                    ) : (
-                      <LucideEyeOff />
-                    )}
+                    {showPassword ?  <LucideEye /> : <LucideEyeOff /> }
                   </button>
                 </div>
               </div>
