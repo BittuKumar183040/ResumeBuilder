@@ -3,7 +3,6 @@ import { Plus, X, ChevronDown, ChevronRight, Cpu } from "lucide-react"
 import Seperator from "../components/Seperator"
 
 const Skills = ({ skills, setSkills }) => {
-
   const [collapsedSkills, setCollapsedSkills] = useState({})
 
   const toggleCollapse = (index) => {
@@ -33,17 +32,16 @@ const Skills = ({ skills, setSkills }) => {
 
   return (
     <div className="mt-5">
-      {/* ── Section header ── */}
       <div className="flex justify-between items-center mb-1">
         <div className="flex items-center gap-2">
-          <Cpu size={14} className="text-indigo-400" />
+          <Cpu size={14} className="text-emerald-500" />
           <h2 className="text-xs font-bold text-slate-500 uppercase tracking-widest">
             Technical Skills
           </h2>
         </div>
         <button
           onClick={addSkill}
-          className="flex items-center gap-1.5 text-xs font-semibold text-indigo-500 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded-lg transition-colors"
+          className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition-colors"
         >
           <Plus size={13} strokeWidth={2.5} /> Add
         </button>
@@ -57,11 +55,7 @@ const Skills = ({ skills, setSkills }) => {
           const itemCount = skill.items.value.filter(Boolean).length
 
           return (
-            <div
-              key={index}
-              className="border border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden"
-            >
-              {/* Card header */}
+            <div key={index} className="border border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden">
               <div
                 className="flex justify-between items-center px-3 py-2.5 cursor-pointer hover:bg-slate-50 transition-colors select-none"
                 onClick={() => toggleCollapse(index)}
@@ -87,10 +81,8 @@ const Skills = ({ skills, setSkills }) => {
                 </button>
               </div>
 
-              {/* Expanded body */}
               {!isCollapsed && (
                 <div className="px-3 pb-3 pt-1 space-y-3 border-t border-slate-100">
-                  {/* Category */}
                   <div className="space-y-1">
                     <label className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
                       {skill.category.label}
@@ -99,11 +91,10 @@ const Skills = ({ skills, setSkills }) => {
                       value={skill.category.value}
                       onChange={(e) => updateField(index, "category", e.target.value)}
                       placeholder="e.g. Languages, Frameworks…"
-                      className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                      className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
                     />
                   </div>
 
-                  {/* Items */}
                   <div className="space-y-1">
                     <label className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
                       {skill.items.label}
@@ -115,13 +106,12 @@ const Skills = ({ skills, setSkills }) => {
                         updateField(index, "items", e.target.value.split(",").map(s => s.trim()))
                       }
                       placeholder="React, TypeScript, Node.js…"
-                      className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                      className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
                     />
-                    {/* Tag preview */}
                     {skill.items.value.filter(Boolean).length > 0 && (
                       <div className="flex flex-wrap gap-1 pt-1">
                         {skill.items.value.filter(Boolean).map((s, i) => (
-                          <span key={i} className="text-[10px] bg-indigo-50 text-indigo-600 border border-indigo-100 px-2 py-0.5 rounded-full">
+                          <span key={i} className="text-[10px] bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-0.5 rounded-full">
                             {s}
                           </span>
                         ))}
@@ -137,7 +127,7 @@ const Skills = ({ skills, setSkills }) => {
         {skills.length === 0 && (
           <button
             onClick={addSkill}
-            className="w-full border-2 border-dashed border-slate-200 rounded-xl py-4 text-xs text-slate-400 hover:border-indigo-300 hover:text-indigo-400 transition-colors"
+            className="w-full border-2 border-dashed border-slate-200 rounded-xl py-4 text-xs text-slate-400 hover:border-emerald-300 hover:text-emerald-500 transition-colors"
           >
             + Add a skill category
           </button>

@@ -32,7 +32,7 @@ const EditableBullet = ({ html, onChange, onEnter }) => {
       ref={ref}
       contentEditable
       suppressContentEditableWarning
-      className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all min-h-[36px]"
+      className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all min-h-[36px]"
       onInput={(e) => onChange(e.currentTarget.innerHTML)}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
@@ -45,7 +45,6 @@ const EditableBullet = ({ html, onChange, onEnter }) => {
 }
 
 const Experience = ({ experiences, setExperiences }) => {
-
   const [collapsedExperiences, setCollapsedExperiences] = useState(
     () => Object.fromEntries(experiences.map((_, i) => [i, true]))
   )
@@ -114,10 +113,10 @@ const Experience = ({ experiences, setExperiences }) => {
   const addExperience = () => {
     const template = {
       designation: { label: "Designation", className: "tracking-wide text-sm font-semibold", value: "" },
-      company: { label: "Company", className: "text-xs font-medium", value: "" },
-      duration: { label: "Duration", className: "italic text-sm", value: { start: "", end: "" } },
-      mode: { label: "Mode", className: "italic text-xs", value: "" },
-      location: { label: "Location", className: "italic text-xs", value: "" },
+      company:     { label: "Company",     className: "text-xs font-medium",                 value: "" },
+      duration:    { label: "Duration",    className: "italic text-sm",                      value: { start: "", end: "" } },
+      mode:        { label: "Mode",        className: "italic text-xs",                      value: "" },
+      location:    { label: "Location",    className: "italic text-xs",                      value: "" },
       description: { label: "Description", className: "list-disc pl-5 space-y-1 text-sm ml-4", value: [<li key={Date.now()}></li>] }
     }
     setExperiences(prev => [...prev, template])
@@ -132,16 +131,7 @@ const Experience = ({ experiences, setExperiences }) => {
     setExperiences(prev =>
       prev.map((exp, i) =>
         i === index
-          ? {
-            ...exp,
-            duration: {
-              ...exp.duration,
-              value: {
-                ...exp.duration.value,
-                [field]: value
-              }
-            }
-          }
+          ? { ...exp, duration: { ...exp.duration, value: { ...exp.duration.value, [field]: value } } }
           : exp
       )
     )
@@ -149,17 +139,16 @@ const Experience = ({ experiences, setExperiences }) => {
 
   return (
     <div className="mt-5">
-      {/* ── Section header ── */}
       <div className="flex justify-between items-center mb-1">
         <div className="flex items-center gap-2">
-          <Briefcase size={14} className="text-indigo-400" />
+          <Briefcase size={14} className="text-emerald-500" />
           <h2 className="text-xs font-bold text-slate-500 uppercase tracking-widest">
             Experience
           </h2>
         </div>
         <button
           onClick={addExperience}
-          className="flex items-center gap-1.5 text-xs font-semibold text-indigo-500 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded-lg transition-colors"
+          className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition-colors"
         >
           <Plus size={13} strokeWidth={2.5} /> Add
         </button>
@@ -173,11 +162,7 @@ const Experience = ({ experiences, setExperiences }) => {
           const isDescCollapsed = descCollapsed[index]
 
           return (
-            <div
-              key={index}
-              className="border border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden"
-            >
-              {/* Card header */}
+            <div key={index} className="border border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden">
               <div
                 className="flex justify-between items-center px-3 py-2.5 cursor-pointer hover:bg-slate-50 transition-colors select-none"
                 onClick={() => toggleCollapse(index)}
@@ -203,17 +188,14 @@ const Experience = ({ experiences, setExperiences }) => {
                 </button>
               </div>
 
-              {/* Expanded body */}
               {!isCollapsed && (
                 <div className="px-3 pb-3 pt-1 space-y-3 border-t border-slate-100">
                   {Object.entries(experience).map(([key, item]) => {
 
-                    /* ── Description sub-section ── */
                     if (key === "description") {
                       const bulletCount = item.value.length
                       return (
                         <div key={key} className="space-y-2">
-                          {/* Description toggle header */}
                           <div
                             className="flex justify-between items-center cursor-pointer py-1 px-2 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors"
                             onClick={() => toggleDesc(index)}
@@ -227,7 +209,9 @@ const Experience = ({ experiences, setExperiences }) => {
                                 {bulletCount}
                               </span>
                             </div>
-                            {isDescCollapsed ? <ChevronRight size={12} className="text-slate-400" /> : <ChevronDown size={12} className="text-slate-400" />}
+                            {isDescCollapsed
+                              ? <ChevronRight size={12} className="text-slate-400" />
+                              : <ChevronDown size={12} className="text-slate-400" />}
                           </div>
 
                           {!isDescCollapsed && (
@@ -251,7 +235,7 @@ const Experience = ({ experiences, setExperiences }) => {
                               ))}
                               <button
                                 onClick={() => addDescription(index)}
-                                className="flex items-center gap-1.5 text-xs font-medium text-indigo-500 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded-lg transition-colors"
+                                className="flex items-center gap-1.5 text-xs font-medium text-emerald-600 hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition-colors"
                               >
                                 <Plus size={12} /> Add bullet
                               </button>
@@ -267,23 +251,19 @@ const Experience = ({ experiences, setExperiences }) => {
                           <label className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
                             {item.label}
                           </label>
-
                           <div className="grid grid-cols-2 gap-2">
-
                             <input
                               value={item.value.start}
                               placeholder="Start"
                               onChange={(e) => setDuration(index, "start", e.target.value)}
-                              className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                              className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
                             />
-
                             <input
                               value={item.value.end}
                               placeholder="End"
                               onChange={(e) => setDuration(index, "end", e.target.value)}
-                              className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                              className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
                             />
-
                           </div>
                         </div>
                       )
@@ -298,7 +278,7 @@ const Experience = ({ experiences, setExperiences }) => {
                           value={item.value}
                           onChange={(e) => setterOuterKeys(index, key, e.target.value)}
                           placeholder={`Enter ${item.label.toLowerCase()}…`}
-                          className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                          className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
                         />
                       </div>
                     )
@@ -312,7 +292,7 @@ const Experience = ({ experiences, setExperiences }) => {
         {experiences.length === 0 && (
           <button
             onClick={addExperience}
-            className="w-full border-2 border-dashed border-slate-200 rounded-xl py-4 text-xs text-slate-400 hover:border-indigo-300 hover:text-indigo-400 transition-colors"
+            className="w-full border-2 border-dashed border-slate-200 rounded-xl py-4 text-xs text-slate-400 hover:border-emerald-300 hover:text-emerald-500 transition-colors"
           >
             + Add your work experience
           </button>

@@ -3,7 +3,6 @@ import { Plus, X, ChevronDown, ChevronRight, Award } from "lucide-react"
 import Seperator from "../components/Seperator"
 
 const Certification = ({ certifications, setCertifications }) => {
-
   const [collapsed, setCollapsed] = useState({})
 
   const toggleCollapse = (index) => {
@@ -20,9 +19,9 @@ const Certification = ({ certifications, setCertifications }) => {
 
   const addCertification = () => {
     const template = {
-      title:  { label: "Title",  className: "font-medium", value: "" },
-      year:   { label: "Year",   className: "italic",      value: "" },
-      issuer: { label: "Issuer", className: "",            value: "" },
+      title: { label: "Title", className: "font-medium", value: "" },
+      year: { label: "Year", className: "italic", value: "" },
+      issuer: { label: "Issuer", className: "", value: "" },
     }
     setCertifications(prev => [...prev, template])
   }
@@ -35,14 +34,14 @@ const Certification = ({ certifications, setCertifications }) => {
     <div className="mt-5">
       <div className="flex justify-between items-center mb-1">
         <div className="flex items-center gap-2">
-          <Award size={14} className="text-indigo-400" />
+          <Award size={14} className="text-emerald-500" />
           <h2 className="text-xs font-bold text-slate-500 uppercase tracking-widest">
             Certifications
           </h2>
         </div>
         <button
           onClick={addCertification}
-          className="flex items-center gap-1.5 text-xs font-semibold text-indigo-500 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded-lg transition-colors"
+          className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition-colors"
         >
           <Plus size={13} strokeWidth={2.5} /> Add
         </button>
@@ -83,7 +82,6 @@ const Certification = ({ certifications, setCertifications }) => {
                 </button>
               </div>
 
-              {/* Expanded body */}
               {!isCollapsed && (
                 <div className="px-3 pb-3 pt-1 space-y-3 border-t border-slate-100">
                   {Object.entries(cert).map(([key, item]) => (
@@ -95,7 +93,7 @@ const Certification = ({ certifications, setCertifications }) => {
                         value={item.value}
                         onChange={(e) => updateField(index, key, e.target.value)}
                         placeholder={`Enter ${item.label.toLowerCase()}…`}
-                        className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                        className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
                       />
                     </div>
                   ))}
@@ -108,7 +106,7 @@ const Certification = ({ certifications, setCertifications }) => {
         {certifications.length === 0 && (
           <button
             onClick={addCertification}
-            className="w-full border-2 border-dashed border-slate-200 rounded-xl py-4 text-xs text-slate-400 hover:border-indigo-300 hover:text-indigo-400 transition-colors"
+            className="w-full border-2 border-dashed border-slate-200 rounded-xl py-4 text-xs text-slate-400 hover:border-emerald-300 hover:text-emerald-500 transition-colors"
           >
             + Add your first certification
           </button>

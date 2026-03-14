@@ -32,7 +32,7 @@ const EditableBullet = ({ html, onChange, onEnter }) => {
       ref={ref}
       contentEditable
       suppressContentEditableWarning
-      className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all min-h-[36px]"
+      className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all min-h-[36px]"
       onInput={(e) => onChange(e.currentTarget.innerHTML)}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
@@ -45,7 +45,6 @@ const EditableBullet = ({ html, onChange, onEnter }) => {
 }
 
 const Projects = ({ projects, setProjects }) => {
-
   const [collapsedProjects, setCollapsedProjects] = useState(
     () => Object.fromEntries(projects.map((_, i) => [i, true]))
   )
@@ -113,11 +112,11 @@ const Projects = ({ projects, setProjects }) => {
 
   const addProject = () => {
     const template = {
-      title:       { label: "Title",       className: "font-semibold",             value: "" },
-      technology:  { label: "Technology",  className: "text-xs italic",            value: [] },
-      live:        { label: "Live URL",    className: "font-medium",               value: "" },
-      github:      { label: "GitHub",      className: "font-medium",               value: "" },
-      date:        { label: "Date",        className: "text-xs italic",            value: "" },
+      title:       { label: "Title",       className: "font-semibold",                      value: "" },
+      technology:  { label: "Technology",  className: "text-xs italic",                     value: [] },
+      live:        { label: "Live URL",    className: "font-medium",                        value: "" },
+      github:      { label: "GitHub",      className: "font-medium",                        value: "" },
+      date:        { label: "Date",        className: "text-xs italic",                     value: "" },
       description: { label: "Description", className: "list-disc pl-5 space-y-px ml-2 text-sm", value: [<li key={Date.now()}></li>] }
     }
     setProjects(prev => [...prev, template])
@@ -130,17 +129,16 @@ const Projects = ({ projects, setProjects }) => {
 
   return (
     <div className="mt-5">
-      {/* ── Section header ── */}
       <div className="flex justify-between items-center mb-1">
         <div className="flex items-center gap-2">
-          <FolderOpen size={14} className="text-indigo-400" />
+          <FolderOpen size={14} className="text-emerald-500" />
           <h2 className="text-xs font-bold text-slate-500 uppercase tracking-widest">
             Projects
           </h2>
         </div>
         <button
           onClick={addProject}
-          className="flex items-center gap-1.5 text-xs font-semibold text-indigo-500 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded-lg transition-colors"
+          className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition-colors"
         >
           <Plus size={13} strokeWidth={2.5} /> Add
         </button>
@@ -154,11 +152,7 @@ const Projects = ({ projects, setProjects }) => {
           const isDescCollapsed = descCollapsed[index]
 
           return (
-            <div
-              key={index}
-              className="border border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden"
-            >
-              {/* Card header */}
+            <div key={index} className="border border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden">
               <div
                 className="flex justify-between items-center px-3 py-2.5 cursor-pointer hover:bg-slate-50 transition-colors select-none"
                 onClick={() => toggleCollapse(index)}
@@ -184,12 +178,10 @@ const Projects = ({ projects, setProjects }) => {
                 </button>
               </div>
 
-              {/* Expanded body */}
               {!isCollapsed && (
                 <div className="px-3 pb-3 pt-1 space-y-3 border-t border-slate-100">
                   {Object.entries(project).map(([key, item]) => {
 
-                    /* ── Description ── */
                     if (key === "description") {
                       const bulletCount = item.value.length
                       return (
@@ -233,7 +225,7 @@ const Projects = ({ projects, setProjects }) => {
                               ))}
                               <button
                                 onClick={() => addDescription(index)}
-                                className="flex items-center gap-1.5 text-xs font-medium text-indigo-500 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded-lg transition-colors"
+                                className="flex items-center gap-1.5 text-xs font-medium text-emerald-600 hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition-colors"
                               >
                                 <Plus size={12} /> Add bullet
                               </button>
@@ -243,7 +235,6 @@ const Projects = ({ projects, setProjects }) => {
                       )
                     }
 
-                    /* ── Technology tags ── */
                     if (key === "technology") {
                       return (
                         <div key={key} className="space-y-1">
@@ -259,13 +250,12 @@ const Projects = ({ projects, setProjects }) => {
                               setterOuterKeys(index, key, e.target.value.split(",").map(t => t.trim()))
                             }
                             placeholder="React, Node.js, Tailwind…"
-                            className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                            className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
                           />
-                          {/* Tag preview */}
                           {item.value.filter(Boolean).length > 0 && (
                             <div className="flex flex-wrap gap-1 pt-0.5">
                               {item.value.filter(Boolean).map((t, i) => (
-                                <span key={i} className="text-[10px] bg-indigo-50 text-indigo-600 border border-indigo-100 px-2 py-0.5 rounded-full">
+                                <span key={i} className="text-[10px] bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-0.5 rounded-full">
                                   {t}
                                 </span>
                               ))}
@@ -284,7 +274,7 @@ const Projects = ({ projects, setProjects }) => {
                           value={item.value}
                           onChange={(e) => setterOuterKeys(index, key, e.target.value)}
                           placeholder={`Enter ${item.label.toLowerCase()}…`}
-                          className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                          className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
                         />
                       </div>
                     )
@@ -298,7 +288,7 @@ const Projects = ({ projects, setProjects }) => {
         {projects.length === 0 && (
           <button
             onClick={addProject}
-            className="w-full border-2 border-dashed border-slate-200 rounded-xl py-4 text-xs text-slate-400 hover:border-indigo-300 hover:text-indigo-400 transition-colors"
+            className="w-full border-2 border-dashed border-slate-200 rounded-xl py-4 text-xs text-slate-400 hover:border-emerald-300 hover:text-emerald-500 transition-colors"
           >
             + Add your first project
           </button>

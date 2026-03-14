@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react"
+import { useState, Fragment, useRef } from "react"
 import Seperator from "../components/Seperator"
 import { LinkOutlined } from "@ant-design/icons"
 import { ChevronDown, User } from "lucide-react"
@@ -7,6 +7,7 @@ import IconLibrary from "../components/IconLibrary"
 const InputWithOptions = ({ outerKey, innerItem, setterArrayInnerKeys }) => {
   const [showlink, setShowlink] = useState(false)
   const [showIconLibrary, setShowIconLibrary] = useState(false)
+  const iconBtnRef = useRef(null);
 
   return (
     <div className="space-y-1.5 mx-3 mb-3">
@@ -14,19 +15,20 @@ const InputWithOptions = ({ outerKey, innerItem, setterArrayInnerKeys }) => {
         {innerItem.label}
       </label>
 
-      {/* Main value input */}
       <div className="relative flex items-center">
         <button
+          ref={iconBtnRef}
           onClick={() => setShowIconLibrary(!showIconLibrary)}
-          className="absolute left-0 top-0 h-full px-3 flex items-center text-slate-400 hover:text-indigo-500 transition-colors"
+          className="absolute left-0 top-0 h-full px-3 flex items-center text-slate-400 hover:text-emerald-600 transition-colors"
         >
           <innerItem.icon />
         </button>
         {showIconLibrary && (
           <IconLibrary
             search={innerItem.key}
+            anchorRef={iconBtnRef}
             onClose={() => setShowIconLibrary(false)}
-            className="absolute bottom-10 left-0 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-slate-200 z-10"
+            className="bg-white/90 backdrop-blur-sm rounded-xl border border-slate-200"
           />
         )}
         <input
@@ -36,10 +38,10 @@ const InputWithOptions = ({ outerKey, innerItem, setterArrayInnerKeys }) => {
           }
           type="text"
           placeholder={`Enter ${innerItem.label.toLowerCase()}…`}
-          className="border border-slate-200 rounded-lg w-full pl-9 pr-9 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+          className="border border-slate-200 rounded-lg w-full pl-9 pr-9 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
         />
         <button
-          className="absolute right-0 top-0 h-full px-3 flex items-center text-slate-400 hover:text-indigo-500 transition-colors"
+          className="absolute right-0 top-0 h-full px-3 flex items-center text-slate-400 hover:text-emerald-600 transition-colors"
           onClick={() => setShowlink(!showlink)}
           title="Toggle URL"
         >
@@ -47,7 +49,6 @@ const InputWithOptions = ({ outerKey, innerItem, setterArrayInnerKeys }) => {
         </button>
       </div>
 
-      {/* URL input */}
       {showlink && (
         <div className="flex items-center gap-2">
           <span className="text-slate-300 shrink-0">
@@ -60,7 +61,7 @@ const InputWithOptions = ({ outerKey, innerItem, setterArrayInnerKeys }) => {
             }
             type="text"
             placeholder={innerItem.example || "https://…"}
-            className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+            className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
           />
         </div>
       )}
@@ -69,7 +70,6 @@ const InputWithOptions = ({ outerKey, innerItem, setterArrayInnerKeys }) => {
 }
 
 const Header = ({ header, setHeader }) => {
-
   const setterOuterKeys = (key, value, className) => {
     setHeader(prev => ({ ...prev, [key]: { ...prev[key], value, className } }))
   }
@@ -90,9 +90,8 @@ const Header = ({ header, setHeader }) => {
 
   return (
     <Fragment>
-      {/* ── Section header ── */}
       <div className="flex items-center gap-2 mb-1">
-        <User size={14} className="text-indigo-400" />
+        <User size={14} className="text-emerald-500" />
         <h2 className="text-xs font-bold text-slate-500 uppercase tracking-widest">
           Header Section
         </h2>
@@ -104,7 +103,6 @@ const Header = ({ header, setHeader }) => {
         {Object.keys(header).map((key) => {
           const item = header[key]
 
-          /* ── Group with sub-items (accordion) ── */
           if (item.items) {
             return (
               <details key={key} className="group border border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden">
@@ -129,7 +127,6 @@ const Header = ({ header, setHeader }) => {
             )
           }
 
-          /* ── Simple field ── */
           return (
             <div key={key} className="space-y-1">
               <label className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
@@ -140,7 +137,7 @@ const Header = ({ header, setHeader }) => {
                 onChange={(e) => setterOuterKeys(key, e.target.value, item.className)}
                 type="text"
                 placeholder={`Enter ${item.label.toLowerCase()}…`}
-                className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
               />
             </div>
           )

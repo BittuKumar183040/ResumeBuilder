@@ -3,7 +3,6 @@ import { Plus, X, ChevronDown, ChevronRight, GraduationCap } from "lucide-react"
 import Seperator from "../components/Seperator"
 
 const Education = ({ education, setEducation }) => {
-
   const [collapsed, setCollapsed] = useState({})
 
   const toggleCollapse = (index) => {
@@ -20,10 +19,10 @@ const Education = ({ education, setEducation }) => {
 
   const addEducation = () => {
     const template = {
-      degree:   { label: "Degree",   className: "text-sm font-medium",       value: "" },
-      location: { label: "Location", className: "italic text-sm",            value: "" },
-      college:  { label: "College",  className: "font-medium text-xs",       value: "" },
-      duration: { label: "Duration", className: "italic text-xs",            value: "" },
+      degree:   { label: "Degree",   className: "text-sm font-medium",  value: "" },
+      location: { label: "Location", className: "italic text-sm",       value: "" },
+      college:  { label: "College",  className: "font-medium text-xs",  value: "" },
+      duration: { label: "Duration", className: "italic text-xs",       value: "" },
     }
     setEducation(prev => [...prev, template])
   }
@@ -34,17 +33,16 @@ const Education = ({ education, setEducation }) => {
 
   return (
     <div className="mt-5">
-      {/* ── Section header ── */}
       <div className="flex justify-between items-center mb-1">
         <div className="flex items-center gap-2">
-          <GraduationCap size={14} className="text-indigo-400" />
+          <GraduationCap size={14} className="text-emerald-500" />
           <h2 className="text-xs font-bold text-slate-500 uppercase tracking-widest">
             Education
           </h2>
         </div>
         <button
           onClick={addEducation}
-          className="flex items-center gap-1.5 text-xs font-semibold text-indigo-500 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded-lg transition-colors"
+          className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition-colors"
         >
           <Plus size={13} strokeWidth={2.5} /> Add
         </button>
@@ -60,7 +58,6 @@ const Education = ({ education, setEducation }) => {
               key={index}
               className="border border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden"
             >
-              {/* Card header */}
               <div
                 className="flex justify-between items-center px-3 py-2.5 cursor-pointer hover:bg-slate-50 transition-colors select-none"
                 onClick={() => toggleCollapse(index)}
@@ -86,7 +83,6 @@ const Education = ({ education, setEducation }) => {
                 </button>
               </div>
 
-              {/* Expanded body */}
               {!isCollapsed && (
                 <div className="px-3 pb-3 pt-1 space-y-3 border-t border-slate-100">
                   {Object.entries(edu).map(([key, item]) => (
@@ -98,7 +94,7 @@ const Education = ({ education, setEducation }) => {
                         value={item.value}
                         onChange={(e) => updateField(index, key, e.target.value)}
                         placeholder={`Enter ${item.label.toLowerCase()}…`}
-                        className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-slate-300"
+                        className="border border-slate-200 rounded-lg w-full px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all placeholder:text-slate-300"
                       />
                     </div>
                   ))}
@@ -111,7 +107,7 @@ const Education = ({ education, setEducation }) => {
         {education.length === 0 && (
           <button
             onClick={addEducation}
-            className="w-full border-2 border-dashed border-slate-200 rounded-xl py-4 text-xs text-slate-400 hover:border-indigo-300 hover:text-indigo-400 transition-colors"
+            className="w-full border-2 border-dashed border-slate-200 rounded-xl py-4 text-xs text-slate-400 hover:border-emerald-300 hover:text-emerald-500 transition-colors"
           >
             + Add your education history
           </button>
