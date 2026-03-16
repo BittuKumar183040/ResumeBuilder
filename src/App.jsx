@@ -7,6 +7,7 @@ import GettingStarted from './pages/GettingStarted'
 import Templates from './pages/Templates'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './components/ProtectedRoute'
+import AuthSuccess from './pages/AuthSuccess'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/auth-success" element={<AuthSuccess />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/templates" element={<Templates />} />
 

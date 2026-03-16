@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Terms from "./components/Terms";
 import { EyeClosed } from "lucide-react";
+import GoogleButton from "../components/GoogleButton";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -61,10 +62,7 @@ const Signup = () => {
               </p>
             </div>
 
-            <button className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-200 rounded-xl text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 mb-6">
-              <GoogleOutlined />
-              Continue with Google
-            </button>
+            <GoogleButton />
 
             <div className="flex items-center gap-4 mb-6">
               <div className="flex-1 h-px bg-gray-200" />
@@ -184,7 +182,7 @@ const Signup = () => {
                 onClick={handleSubmit}
                 className="w-full py-3.5 bg-emerald-600 text-white font-bold text-sm rounded-xl hover:bg-emerald-700 shadow-lg shadow-emerald-200 transition-all duration-200 hover:-translate-y-0.5 mt-2"
               >
-                Create My Free Account →
+                Create Account →
               </button>
             </div>
           </div>

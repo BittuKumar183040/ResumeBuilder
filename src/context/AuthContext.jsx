@@ -8,23 +8,23 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const verifyAuth = async () => {
-      try {
-        const res = await backendAPI.get(`${import.meta.env.VITE_API_URL}/auth/me`, { withCredentials: true })
-        if (res.ok) {
-          const data = await res.json();
-          setUser(data.user);
-        } else {
-          setUser(null);
-        }
-      } catch {
-        setUser(null);
-      } finally {
-        setLoading(false);
-      }
-    };
     verifyAuth();
   }, []);
+
+  const verifyAuth = async () => {
+    try {
+      const res = await backendAPI.get(`${import.meta.env.VITE_API_URL}/auth/me`, { withCredentials: true })
+      if (res.status === 200) {
+        setUser(res.data.user);
+      } else {
+        setUser(null);
+      }
+    } catch {
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const login = async (email, password) => {
     const formData = { email, password };
@@ -41,8 +41,7 @@ export const AuthProvider = ({ children }) => {
     if (res.status !== 200) {
       throw new Error(res.data.message || "Login failed");
     }
-
-    setUser(res.data.user);
+    verifyAuth();
     return res.data;
   };
 

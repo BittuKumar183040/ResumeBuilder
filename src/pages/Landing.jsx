@@ -2,41 +2,12 @@ import { GithubFilled } from "@ant-design/icons";
 import { ArrowBigRight, ArrowLeft, ArrowRight } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 const Landing = () => {
   return (
     <div className="min-h-screen bg-white font-sans">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-
-          <a href="/" className="flex items-center gap-2.5">
-            <img
-              src="logo.png"
-              alt="Logo"
-              className="h-8 w-8 rounded-lg object-contain border border-gray-200"
-              onError={(e) => (e.target.style.display = "none")}
-            />
-            <span className="text-lg font-extrabold tracking-tight text-gray-900">
-              B2<span className="text-emerald-600">RB</span>
-            </span>
-          </a>
-
-          <div className="flex items-center gap-3">
-            <a
-              href="https://github.com/BittuKumar183040/B2RB"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 border border-gray-200 rounded-lg hover:border-gray-400 hover:text-gray-900 transition-all duration-200"
-            >
-              <GithubFilled />
-              GitHub
-            </a>
-            <Link to="/login" className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 transition-all duration-200 shadow-sm">
-              Login <ArrowRight size={18} />
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-16 overflow-hidden">
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-emerald-100 rounded-full blur-3xl opacity-50 pointer-events-none" />

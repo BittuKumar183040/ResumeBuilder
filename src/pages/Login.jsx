@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -14,6 +14,12 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setError(""); // clear error on type
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -130,7 +136,7 @@ const Login = () => {
                     Logging in…
                   </>
                 ) : (
-                  "Log in to ResumeCraft →"
+                  "Log in →"
                 )}
               </button>
             </div>
