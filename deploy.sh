@@ -19,6 +19,13 @@ fi
 
 echo "▶ Fetching latest code..."
 git fetch origin
+
+if git diff --quiet HEAD origin/main; then
+  echo "✅ No changes. Skipping deploy."
+  exit 0
+fi
+
+echo "🚀 New changes detected. Pulling..."
 git pull origin main
 
 echo "▶ Getting git commit hash..."
